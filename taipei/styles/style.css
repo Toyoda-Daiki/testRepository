@@ -1,0 +1,946 @@
+@charset "UTF-8";
+
+section {
+  width: 1200px;
+  padding-bottom: 80px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 48px;
+}
+img {
+  max-width: 100%;
+}
+.SNS img {
+  height: 32px;
+  width: 32px;
+}
+
+.borderLine {
+  position: relative;
+  width: 480px;
+  border-bottom: 1px solid #000;
+  margin: 80px auto;
+}
+
+/* ================ */
+/* ヘッダー================ */
+header {
+  background: url(../images/taipeiHead1.jpg) no-repeat right center/cover;
+  width: 1366px;
+  height: 768px;
+}
+header .top {
+  position: relative;
+  width: 1200px;
+  height: 768px;
+  margin: 0 auto;
+}
+header .top h1 img {
+  position: absolute;
+  width: 300px;
+  top: 94px;
+  left: 280px;
+}
+header .top nav {
+  display: flex;
+  width: 1160px;
+  height: 54px;
+}
+header .top nav img {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  width: 133px;
+  height: 54px;
+}
+header .top nav ul {
+  display: flex;
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  font-size: 24px;
+  color: #fff;
+  height: 1em;
+  margin: 0 auto;
+}
+header .top nav ul li {
+  margin-right: 20px;
+}
+header .top nav ul li:last-of-type{
+  margin-right: 0;
+}
+
+.top .topText {
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1.6;
+  width: 467px;
+  height: 96px;
+  right: 20px;
+  bottom: 20px;
+}
+
+
+.gallery h2,
+.travel h2 {
+  width: 530px;
+  height: 96px;
+  text-align: center;
+  line-height: 2;
+  background: url(../../common/images/bgFrame.png) no-repeat center center / cover;
+  margin: 20px auto 160px 20px;
+}
+
+h2 span {
+  margin-left: 20px;
+  font-size: 24px;
+}
+
+/* ================ */
+/* パンくず================ */
+.viewNav {
+  display: flex;
+  position: relative;
+  align-items: center;
+  max-width: 1366px;
+  height: 60px;
+  border-bottom: 1px solid black;
+  margin: 0 auto;
+}
+.viewNav p {
+  width: 1200px;
+  padding-left: 20px;
+  margin: 0 auto;
+  font-size: 20px;
+}
+.viewNav span {
+  font-size: 1.4em;
+}
+
+/* ================ */
+/* 観光名所　豊田================ */
+.attraction {
+  max-width: 1366px;
+  height: 1722px;
+  margin: 0 auto;
+}
+.attraction h2 {
+  width: 530px;
+  height: 96px;
+  text-align: center;
+  line-height: 2;
+  background: url(../../common/images/bgFrame.png) no-repeat center center / cover;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.attraction h3 {
+  font-size: 36px;
+  font-weight: bold;
+}
+.spot1, .spot2 {
+  width: 1160px;
+  height: 603px;
+  margin: 80px auto;
+}
+.spot2 h3 {
+  padding-top: 80px;
+}
+.grid1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px 60px;
+  width: 1160px;
+  height: 547px;
+  margin-top: 20px;
+}
+.container1 {
+  grid-column: 1 / 1;
+  grid-row:  1 / 1;
+  width: 600px;
+  height: 360px;
+}
+.container2 {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-column: 1 / 1;
+  grid-row: 2 / 3;
+  width: 600px;
+  height: 167px;
+}
+.container3, .container4 {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2 ;
+}
+.container5 {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.container1 img {
+  width: 600px;
+  height: 360px;
+  object-fit: cover;
+}
+
+.container2 img{
+  width: 290px;
+  height: 167px;
+  object-fit: cover;
+  object-position: center;
+}
+.container2 .taipeiAt2 {
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
+}
+.container2 .taipeiAt2 img {
+  object-fit: cover;
+  object-position: right 25%;
+}
+.container2 .taipeiAt3 {
+  grid-column: 2 / 3;
+  grid-row: 1 / 1;
+}
+
+.container3, .container4 {
+  font-size: 20px;
+  line-height: 1.6;
+  text-align: justify;
+  background-color: #6CBAD820;
+  padding: 20px 40px;
+  width: 500px;
+  height: 360px;
+}
+
+.container5 {
+  width: 500px;
+  height: 160px;
+  background-color: #6CBAD820;
+  padding: 40px 0;
+  text-align: center;
+}
+.container5 .time1 {
+  font-size: 20px;
+  line-height: 1;
+  margin: 0 auto 40px;
+}
+.container5 .time2 {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1;
+} 
+
+/* ================ */
+/* 夜市　豊田================ */
+.nightMarket {
+  max-width: 1366px;
+  height: 1006px;
+  margin: 0 auto;
+}
+.nightMarket h2{
+  width: 530px;
+  height: 96px;
+  text-align: center;
+  line-height: 2;
+  background: url(../../common/images/bgFrame.png) no-repeat center center / cover;
+  margin: 20px 20px 80px auto;
+}
+
+.nM1, .nM2 {
+  display: flex;
+}
+.nM1 {
+  margin-bottom: 120px;
+}
+.nM2 {
+  margin-bottom: 80px;
+}
+.nM1Right, .nM2Right {
+  margin-right: 20px;
+}
+.nM1 img, .nM2 img{
+  width: 540px;
+  height: 264px;
+  object-fit: cover;
+}
+
+.nM1Left {
+  width: 420px;
+  height: 264px;
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+  line-height: 1.6;
+  margin: 0 auto;
+  margin-left: 60px;
+  margin-right: 160px;
+}
+.nM1Left p{
+  padding: 36px 0;
+  text-align: justify;
+  font-size: 20px;
+}
+
+.nM2Left {
+  width: 460px;
+  height: 220px;
+  margin-left: 60px;
+  margin-right: 120px;
+}
+
+.modal {
+  display: grid;
+  position: relative;
+  gap: 40px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+button[type="button"]{
+  font-size: 18px;
+  font-weight: bold;
+  width: 210px;
+  height: 90px;
+  background: url(../images/bgFrame2.png) no-repeat center center / cover;
+  text-align: center;
+}
+.modalbtn1{
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+.modalbtn2{
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+.modalbtn3{
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+.modalbtn4{
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+
+/* ================ */
+/* ＝＝＝＝＝モーダル＝＝＝＝＝ */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  z-index: 999;
+}
+body.modalOpen {
+  overflow: hidden;
+}
+.modalOverlay.active {
+  display: flex;
+}
+
+.modalContent {
+  color: #fff;
+  background-color: #0180BE90;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px 103px;
+  max-width: 100%;
+  height: 604px;
+  position: relative;
+}
+.modalContent h4 {
+  font-size: 36px;
+  font-weight: bold;
+  height: 1em;
+  margin-bottom: 20px;
+}
+.modalCo1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 60px;
+  height: 468px;
+}
+.modalCo2 {
+  width: 600px;
+  height: 468px;
+}
+.modalCo2 img {
+  width: 600px;
+  height: 468px;
+  object-fit: cover;
+  object-position: center;
+}
+.modalCo3 {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.6;
+}
+.modalCo3 p{
+  text-align: justify;
+  width: 500px;
+  height: 192px;
+  margin-bottom: 20px;
+}
+.tomeSchedule {
+  text-align: center;
+}
+
+.closeBtn {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+.closeBtn img {
+  width: 36px;
+  height: 36px;
+}
+
+
+/* ================ */
+/* アクセス　豊田================ */
+.access {
+  position: relative;
+  max-width: 1366px;
+  height: 1864px;
+  margin: 0 auto;
+}
+.access h2{
+  width: 530px;
+  height: 96px;
+  text-align: center;
+  line-height: 2;
+  background: url(../../common/images/bgFrame.png) no-repeat center center / cover;
+  margin: 20px auto 80px 20px;
+}
+
+.access1 {
+  font-size: 24px;
+  width: 420px;
+  text-align: center;
+  border-bottom: 1px solid #000;
+  padding-bottom: 40px;
+  margin-left: 92px;
+}
+
+.access2 {
+  width: 1160px;
+  height: 336px;
+  margin: 80px 20px;
+}
+
+.access3 {
+  display: grid;
+  position: relative;
+  width: 1040px;
+  height: 832px;
+  margin: 80px 80px 40px 80px;
+  gap: 20px 80px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+.access3 h4 {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.access3 h4::before {
+  content: "";
+  display: inline-block;
+  width: 0.8em;
+  height: 0.8em;
+  background-color: black;
+  margin-right: 0.1em;
+  vertical-align: baseline;
+}
+.access3 p {
+  font-size: 24px;
+  width: 400px;
+  text-align: justify;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.access3 span {
+  font-weight: bold;
+}
+.access3 .mrt {
+  width: 480px;
+  height: 406px;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+.access3 .bus {
+  width: 480px;
+  height: 406px;
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+.access3 .taxi {
+  width: 480px;
+  height: 406px;
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+.access3 .icCard {
+  width: 480px;
+  height: 406px;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.access4{
+  position:absolute;
+  right: 197px;
+  bottom: 80px;
+  width: 246px;
+  height: 155px;
+}
+
+/* ================ */
+/* フッター　common.cssに記載================ */
+
+
+/* ================ */
+/* トップへ戻るボタン　common.cssに記載================ */
+
+
+
+@media screen and (max-width:768px) {
+  body {
+    max-width: 100%;
+    margin: 0;
+  }
+  section {
+    width: stretch;
+    margin: 0 20px;
+    padding-bottom: 60px;
+  }
+  h2 {
+    width: 220px;
+    height: 40px ;
+    margin: 0 0 40px;
+    font-size: 24px;
+    line-height: 1.6;
+  }
+  .nightMarket h2, .access h2,.attraction h2 {
+    background-size: 220px 40px;
+  }
+  h2 span {
+    margin-left: 0;
+    font-size: 12px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  p {
+    font-size: 12px;
+  }
+  .borderLine {
+    width: 223px;
+    margin: 40px auto;
+  }
+
+/* ================ */
+/* ヘッダー(SP)================ */
+  header {
+    width: auto;
+    max-width: 100%;
+    height: 667px;
+    background-position: center center;
+  }
+  header .top h1 img {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 199px;
+    height: 372px;
+  }
+  header .top {
+    max-width: 100%;
+    height: 667px;
+  }
+  header .top nav {
+    width: 100%;
+  }
+  header .top nav ul {
+    display: none;
+  }
+  
+  header.top nav img {
+    top: 8px;
+    left: 20px;
+  }
+  header .top nav img {
+    position: absolute;
+    left: 20px;
+    top: 8px;
+    width: 111px;
+    height: 45px;
+  }
+
+
+  header .top .topText {
+    right: 20px;
+    bottom: 8px;
+    width: 247px;
+    height: 57.6px;
+  }
+  .topText p {
+    font-size: 12px;
+  }
+
+
+  /* ================ */
+  /* パンくず(SP)================ */
+  .viewNav {
+    display: flex;
+    position: relative;
+    align-items: start;
+    max-width: auto;
+    height: 32px;
+    border-bottom: 1px solid black;
+    margin: 0 auto;
+  }
+  .viewNav p {
+    position: absolute;
+    width: auto;
+    padding: 0 0px;
+    padding-left: 20px;
+    font-size: 16px;
+  }
+  .viewNav span {
+    font-size: 1.4em;
+  }
+
+
+/* ================ */
+/* 観光名所(SP)　豊田================ */
+  .attraction {
+    height: 1934.6px;
+    padding: 20px 40px 0;
+  }
+  .attraction h2 {
+    width: 220px;
+    height: 40px ;
+    margin: 0px auto 40px;
+    line-height: 1.6;
+  }
+  .attraction h3 {
+    font-size: 24px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1;
+  }
+  .spot1, .spot2 {
+    position: relative;
+    width: 295px;
+    height: 889.4px;
+    margin: 0px auto;
+    margin-bottom: 40px;
+  }
+  .spot2 {
+    height: 865.2px;
+    margin-top: 40px;
+  }
+  .spot2 h3 {
+    padding-top: 0px;
+  }
+
+  .grid1 {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    width: 295px;
+    height: 805.4px;
+  }
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    width: 295px;
+    height: 821.2px;
+  }
+  .container1 {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+    width: 295px;
+    height: 221px;
+  }
+  .container1 img {
+    width: 295px;
+    height: 221px;
+  }
+
+  .container2 {
+    grid-column: 1 / 1;
+    grid-row: 3 / 4;
+    width: 295px;
+    height: 225px;
+  }
+  .container2 img{
+    width: 137.5px;
+    height: 225px;
+  }
+
+  .container3, .container4 {
+    grid-column: 1 / 1;
+    grid-row: 2 / 3;
+    font-size: 12px;
+    padding: 8px 36px;
+    width: 295px;
+  }
+  .container3 {
+    height: 246.4px;
+  }
+  .container4 {
+    height: 227.2px;
+  }
+  .container5 {
+    grid-column: 1 / 1;
+    grid-row: 4 / 5;
+    width: 295px;
+    height: 53px;
+    padding: 8px 0;
+  }
+  .container5 .time1, .container5 .time2 {
+    font-size: 12px;
+    line-height: 1em;
+  }
+  .container5 .time1 {
+    margin: 0 auto 8px ;
+  }
+  .attraction .spot1 .borderLine, .attraction .spot2 .borderLine {
+    bottom: 0;
+    width: 223px;
+    margin: 40px auto;
+  }
+  .attraction .spot2 .borderLine {
+    margin: 0 auto;
+  }
+  
+
+
+  /* ================ */
+  /* 夜市(SP)　豊田================ */
+  .nightMarket {
+    height: 810.4px;
+    padding-top: 20px;
+    padding-bottom: 0px;
+  }
+  .nightMarket h2 {
+    width: 220px;
+    height: 40px ;
+    margin: 0px auto 60px;
+    line-height: 1.6;
+  }
+  .nM1, .nM2 {
+    display: block;
+    margin: 0 auto;
+  }
+  .nM1 img, .nM2 img{
+    width: 183px;
+    height: 122px;
+    object-fit: cover;
+    margin: 0 auto;
+  }
+  .nM1Left{
+    width: 223px;
+    height: 158.4px;
+    margin: 0 auto;
+  }
+  .nM1Left p {
+    padding: 12px 0;
+    font-size: 12px;
+  }
+  .nM1Right, .nM2Right {
+    width: 183px;
+    margin: 40px auto 20px;
+  }
+  .nM2Right {
+    margin-top: 20px;
+  }
+  .nM2Left {
+    width: 295px;
+    height: 128px;
+    margin: 0 auto ;
+  }
+  .modal {
+    gap: 32px;
+  }
+  button[type="button"]{
+    font-size: 12px;
+    width: 100%;
+    background-size: contain;
+    background-size: 131.5px 48px;
+    height: 48px;
+  }
+
+
+  
+/* ＝＝＝＝＝モーダル(SP)＝＝＝＝＝ */
+.modalOverlay {
+  display: none;
+  z-index: 999;
+}
+
+.modalContent {
+  padding: 40px 20px;
+  height: 667px;
+}
+.modalContent h3 {
+  font-size: 12px;
+}
+.modalContent h4 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+.modalCo1 {
+  display: grid;
+  grid-template-columns: 1fr ;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+  height: 532.2px;
+}
+.modalCo2 {
+  width: 335px;
+  height: 223px;
+}
+.modalCo2 img {
+  width: 335px;
+  height: 223px;
+}
+.modalCo3 {
+  font-size: 12px;
+}
+.modalCo3 p{
+  width: 303px;
+  height: 115.2px;
+  margin: auto 16px;
+  margin-bottom: 20px;
+}
+
+.closeBtn {
+  width: 28px;
+  height: 28px;
+  top: 8px;
+  right: 8px;
+}
+.closeBtn img {
+  width: 28px;
+  height: 28px;
+}
+
+
+  /* ================ */
+  /* アクセス(SP)　豊田================ */
+  .access {
+    height: 1057.4px;
+    position: relative;
+    padding-top: 20px;
+  }
+  .access h2 {
+    width: 220px;
+    height: 40px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+  .access1 {
+    font-size: 12px;
+    width: 223px;
+    padding-bottom: 12px;
+    margin: 0 auto;
+  }
+  .access2 {
+    width: 335px;
+    height: 134px;
+    margin: 40px auto;
+  }
+  .access2 img{
+    width: 100%;
+    height: 134px;
+    object-fit: cover;
+    object-position: center 90%;
+  }
+  .access3 {
+    width: 225px;
+    height: 578.4px;
+    gap: 20px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    margin: 0 auto;
+  }
+  .access3 h4 {
+    font-size: 12px;
+    text-align: left;
+    line-height: 1;
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+  .access3 p {
+    font-size: 12px;
+    width: 223px;
+    height: auto;
+    line-height: 1.6;
+  }
+  .access3 .mrt {
+    width: fit-content;
+    height: fit-content;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    margin-right: 0;
+  }
+  .access3 .bus {
+    width: fit-content;
+    height: fit-content;
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    margin: 0;
+  }
+  .access3 .taxi {
+    width: fit-content;
+    height: fit-content;
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+    margin-right: 0;
+  }
+  .access3 .icCard {
+    width: fit-content;
+    height: fit-content;
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+  }
+  .access4 {
+    margin: 0 auto;
+    width: 95px;
+    height: 61px;
+    bottom: 60px;
+    transform: translateX(-50%);
+    left: 50%;
+    margin-top: 20px;
+  }
+
+  /* ================ */
+  /* フッター(SP)　common.cssに記載================ */
+  
+
+  /* ================ */
+  /* トップへ戻るボタン(SP)　common.cssに記載================ */
+  
+}
