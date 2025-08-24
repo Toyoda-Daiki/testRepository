@@ -1,0 +1,1437 @@
+<!-- <!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ブラックジャック</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle, #2c3e50, #1a252f);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1em;
+      box-sizing: border-box;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    #homeBtn {
+      position: fixed;
+      top: 1em;
+      right: 1em;
+      width: 40px;
+      height: 36px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1200;
+      user-select: none;
+    }
+
+    #homeBtn::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 7px;
+      width: 26px;
+      height: 26px;
+      border-left: 2px solid white;
+      border-right: 2px solid white;
+      border-bottom: 2px solid white;
+      box-sizing: border-box;
+      border-radius: 2px;
+      background: transparent;
+      z-index: 1;
+    }
+
+    #homeBtn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 20px;
+      pointer-events: none;
+      z-index: 2;
+      background:
+        linear-gradient(135deg, transparent 45%, white 45%, white 55%, transparent 55%) left top / 50% 100% no-repeat,
+        linear-gradient(225deg, transparent 45%, white 45%, white 55%, transparent 55%) right top / 50% 100% no-repeat;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin: 0.5em 0 1em 0;
+      text-align: center;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3em;
+    }
+
+    .title-icon {
+      width: 1em;
+      height: 1em;
+      margin: 0 0.3em;
+    }
+
+    h2 {
+      margin: 0.5em 0 0.5em;
+    }
+
+    .table-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      width: 100%;
+      max-width: 900px;
+      min-height: 250px;
+      margin-bottom: 1em;
+    }
+
+    .zone {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.6em 0.8em;
+      border-radius: 10px;
+      max-height: fit-content;
+    }
+
+    img {
+      -webkit-user-drag: none;
+      user-drag: none;
+      pointer-events: auto;
+    }
+
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6em;
+      min-height: 100px;
+      margin-bottom: 0.5em;
+    }
+
+    .card {
+      background: white;
+      color: black;
+      border-radius: 5px;
+      width: 50px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+      animation: deal 0.3s forwards;
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    .card-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-content .card-value {
+      font-size: 1.4em;
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .card-suit-top-left,
+    .card-suit-bottom-right {
+      width: 15px;
+      height: 15px;
+      position: absolute;
+    }
+
+    .card-suit-top-left {
+      top: 4px;
+      left: 4px;
+    }
+
+    .card-suit-bottom-right {
+      bottom: 4px;
+      right: 4px;
+    }
+
+    .card.back {
+      background: repeating-linear-gradient(
+        45deg,
+        #34495e,
+        #34495e 5px,
+        #2c3e50 5px,
+        #2c3e50 10px
+      );
+      color: transparent;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    }
+
+    @keyframes deal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .score {
+      font-size: 1em;
+      margin-top: -0.2em;
+    }
+
+    .controls {
+      margin-top: 0.5em;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5em;
+    }
+
+    .bet-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 1em;
+      margin-top: 1em;
+      flex-wrap: wrap;
+    }
+
+    .bet-zone {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.6em 0.8em;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+
+    #betBtnWrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    #betBtn {
+      padding: 0.6em 1.2em;
+      font-size: 1em;
+      margin: 3.39px auto;
+    }
+
+    button {
+      padding: 0.4em 1em;
+      font-size: 1em;
+      border: none;
+      border-radius: 6px;
+      background: #27ae60;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover:not(:disabled) {
+      background: #219150;
+    }
+
+    button:disabled {
+      background: #777;
+      cursor: not-allowed;
+    }
+
+    button.danger {
+      background: #e74c3c;
+    }
+
+    button.danger:hover:not(:disabled) {
+      background: #c0392b;
+    }
+
+    button.danger:disabled {
+      background: #999 !important;
+      color: #ccc !important;
+      cursor: not-allowed;
+    }
+
+    input[type="number"] {
+      width: 80px;
+      padding: 0.4em;
+      border-radius: 6px;
+      font-size: 1em;
+      border: none;
+      text-align: center;
+      appearance: none;
+    }
+
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button {
+      /* -webkit-appearance: none; */
+      -webkit-appearance: auto;
+      margin: 0;
+    }
+
+    #message {
+      margin-top: 0.8em;
+      font-size: 1.2em;
+      font-weight: bold;
+      min-height: 1.5em;
+      user-select: none;
+      text-align: center;
+    }
+
+    #message.win { color: #2ecc71; }
+    #message.lose { color: #e74c3c; }
+    #message.draw { color: #f1c40f; }
+
+    #coinDisplay {
+      position: fixed;
+      bottom: 1em;
+      right: 1em;
+      background: rgba(0,0,0,0.6);
+      color: #2ecc71;
+      font-weight: bold;
+      padding: 0.6em 1em;
+      border-radius: 10px;
+      font-size: 1.1em;
+      box-shadow: 0 0 10px #2ecc71;
+      user-select: none;
+      z-index: 1000;
+    }
+
+    #keyGuide {
+      position: fixed;
+      bottom: 1em;
+      left: 1em;
+      background: rgba(0, 0, 0, 0.2);
+      color: #fff;
+      padding: 0.6em 1em;
+      border-radius: 8px;
+      font-size: 0.9em;
+      line-height: 1.4em;
+      user-select: none;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+      max-width: 180px;
+      z-index: 1100;
+    }
+
+    @media (max-width: 599px) {
+      #keyGuide {
+        display: none;
+      }
+      #homeBtn {
+        top: auto;
+        bottom: 1.5em;
+        right: auto;
+        left: 1em;
+      }
+      .title-icon {
+        width: 1em;
+        height: 1em;
+        vertical-align: auto;
+        margin: 0 0;
+        align-items: center;
+      }
+      h2 {
+        margin-top: 0.3em;
+      }
+    }
+
+    @media (min-width: 600px) {
+      .table-container {
+        flex-direction: row;
+        justify-content: space-between;
+        min-height: fit-content;
+      }
+
+      .zone {
+        flex: 1;
+        margin: 0 0.7em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button id="homeBtn" onclick="location.href='Home.html'" aria-label="ホームに戻る"></button>
+
+  <h1 class="title">
+    <img src="images/spade.png" alt="スペード" class="title-icon">
+    ブラックジャック
+    <img src="images/heart.png" alt="ハート" class="title-icon">
+  </h1>
+
+  <div class="table-container">
+    <div class="zone">
+      <h2>ディーラー</h2>
+      <div id="dealer-cards" class="cards"></div>
+      <div id="dealer-score" class="score">合計: ???</div>
+    </div>
+    <div class="zone">
+      <h2>あなた</h2>
+      <div id="player-cards" class="cards"></div>
+      <div id="player-score" class="score">合計: 0</div>
+    </div>
+  </div>
+
+  <div class="bet-wrapper">
+    <div class="bet-zone">
+      <label for="bet" style="display:flex; align-items:center; gap:0.3em;">
+        ベット: 
+        <input type="number" id="bet" min="1" max="100" value="10">
+        <span>coin</span>
+      </label>
+    </div>
+    <div id="betBtnWrapper">
+      <button onclick="restart()" id="betBtn">ベット</button>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button onclick="doubleDown()" id="doubleBtn" class="danger">ダブルダウン</button>
+    <button onclick="hit()" id="hitBtn">ヒット</button>
+    <button onclick="stand()" id="standBtn">スタンド</button>
+  </div>
+
+  <div id="message"></div>
+  <div id="coinDisplay">コイン: <span id="coinBalance">100</span></div>
+  <div id="keyGuide">
+    ↑ ↓：±1　← →：±10<br>
+    スペースキー：ベット<br>
+    左Shiftキー：ヒット<br>
+    Enterキー：ダブルダウン<br>
+    Tabキー：スタンド
+  </div>
+
+  <script>
+    const suits = ['spade', 'heart', 'diamond', 'clover'];
+    const values = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+
+    let deck = [];
+    let player = [];
+    let dealer = [];
+    let gameOver = false;
+    let dealerHidden = true;
+    let coins = 100;
+    let currentBet = 10;
+    let BlackjackWin = false;
+    let Restarting = false;
+    let Hitting = false;
+
+    function createDeck() {
+      deck = [];
+      for (let suit of suits) {
+        for (let value of values) {
+          deck.push({ suit, value });
+        }
+      }
+      for (let i = deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+      }
+    }
+
+    function drawCard() {
+      if (deck.length === 0) {
+        console.warn('デッキが空です。新しいデッキを生成します。');
+        createDeck(); 
+        shuffleDeck();
+      }
+      return deck.pop();
+    }
+
+    async function dealInitialCards() {
+      player = [];
+      dealer = [];
+      gameOver = false;
+      dealerHidden = true;
+      BlackjackWin = false;
+      showMessage('');
+      updateUI();
+
+      player.push(drawCard()); updateUI(); await delay(300);
+      dealer.push(drawCard()); updateUI(); await delay(300);
+      player.push(drawCard()); updateUI(); await delay(300);
+      dealer.push(drawCard()); updateUI();
+
+      checkBlackjack();
+      toggleButtons(true);
+    }
+
+    function renderCards(containerId, hand) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      hand.forEach((card, i) => {
+        const div = document.createElement('div');
+        div.className = 'card';
+
+        if (containerId === 'dealer-cards' && dealerHidden && i === 1) {
+          div.classList.add('back');
+          div.textContent = '';
+        } else {
+          const inner = document.createElement('div');
+          inner.className = 'card-content';
+
+          const valueText = document.createElement('div');
+          valueText.className = 'card-value';
+          valueText.textContent = card.value;
+          valueText.style.color = (card.suit === 'heart' || card.suit === 'diamond') ? 'red' : 'black';
+
+          const suitTopLeft = document.createElement('img');
+          suitTopLeft.className = 'card-suit-top-left';
+          suitTopLeft.src = `images/${card.suit}.png`;
+          suitTopLeft.alt = card.suit;
+
+          const suitBottomRight = document.createElement('img');
+          suitBottomRight.className = 'card-suit-bottom-right';
+          suitBottomRight.src = `images/${card.suit}.png`;
+          suitBottomRight.alt = card.suit;
+
+          inner.appendChild(valueText);
+          inner.appendChild(suitTopLeft);
+          inner.appendChild(suitBottomRight);
+          div.appendChild(inner);
+        }
+
+        div.style.animationDelay = `${i * 0.1}s`;
+        container.appendChild(div);
+      });
+    }
+
+    function getPoints(hand) {
+      let total = 0, aces = 0;
+      for (let card of hand) {
+        if (['J', 'Q', 'K'].includes(card.value)) total += 10;
+        else if (card.value === 'A') { total += 11; aces++; }
+        else total += parseInt(card.value);
+      }
+      while (total > 21 && aces > 0) { total -= 10; aces--; }
+      return total;
+    }
+
+    function updateUI() {
+      renderCards('player-cards', player);
+      renderCards('dealer-cards', dealer);
+      document.getElementById('player-score').textContent = `合計: ${getPoints(player)}`;
+      document.getElementById('dealer-score').textContent = dealerHidden ? '合計: ???' : `合計: ${getPoints(dealer)}`;
+    }
+
+    function updateCoinDisplay() {
+      document.getElementById('coinBalance').textContent = coins;
+    }
+
+    function showMessage(msg, type = '') {
+      const el = document.getElementById('message');
+      el.innerHTML = msg;
+      el.className = '';
+      if (type) el.classList.add(type);
+    }
+
+    async function hit() {
+      if (gameOver || Hitting || player.length < 2) return;
+      Hitting = true;
+
+      player.push(drawCard());
+      updateUI();
+      await delay(400);
+
+      toggleButtons(true);
+
+      if (getPoints(player) > 21) {
+        endGame('バースト！<br>あなたの負けです。', 'lose');
+      }
+
+      Hitting = false;
+    }
+
+    async function stand() {
+      if (gameOver || player.length < 2) return;
+      toggleButtons(false);
+      await delay(500);
+      dealerHidden = false;
+      updateUI();
+      await dealerTurn();
+    }
+
+    async function dealerTurn() {
+      while (getPoints(dealer) < 17) {
+        await delay(600);
+        dealer.push(drawCard());
+        updateUI();
+      }
+      const p = getPoints(player), d = getPoints(dealer);
+      if (d > 21) endGame('ディーラーがバースト！<br>あなたの勝ち！', 'win');
+      else if (p > d) endGame('あなたの勝ち！', 'win');
+      else if (p < d) endGame('あなたの負け！', 'lose');
+      else endGame('引き分け！<br>ベット額を変換します。', 'draw');
+    }
+
+    function endGame(msg, result) {
+      gameOver = true;
+      toggleButtons(false);
+
+      if (result === 'win' && BlackjackWin) {
+        coins += Math.floor(currentBet * 2.5);
+      } else if (result === 'win') {
+        coins += currentBet * 2;
+      } else if (result === 'draw') {
+        coins += currentBet;
+      }
+
+      updateCoinDisplay();
+      showMessage(msg, result);
+      updateUI();
+    }
+
+    function restart() {
+      if (Restarting) return;
+      Restarting = true;
+
+      const betInput = document.getElementById('bet');
+      currentBet = parseInt(betInput.value);
+      if (isNaN(currentBet) || currentBet <= 0 || currentBet > coins) {
+        alert('正しいベット金額（1 〜 ' + coins + ' coin）を入力してください');
+        Restarting = false;
+        betInput.focus();
+        return;
+      }
+
+      const betBtn = document.getElementById('betBtn');
+      betBtn.disabled = true;
+
+      coins -= currentBet;
+      updateCoinDisplay();
+      createDeck();
+
+      dealInitialCards().then(() => {
+        Restarting = false;
+        betBtn.disabled = false;
+      });
+    }
+
+    async function doubleDown() {
+      if (gameOver || player.length !== 2 || coins < currentBet) return;
+      coins -= currentBet;
+      currentBet *= 2;
+      updateCoinDisplay();
+
+      player.push(drawCard());
+      updateUI();
+      await delay(400);
+
+      if (getPoints(player) > 21) {
+        endGame('バースト！あなたの負けです。', 'lose');
+      } else {
+        await stand();
+      }
+    }
+
+    function checkBlackjack() {
+      const p = getPoints(player), d = getPoints(dealer);
+      if (p === 21 && d === 21) {
+        dealerHidden = false;
+        endGame('お互いブラックジャック！引き分け！ベット額は戻りました。', 'draw');
+      } else if (p === 21) {
+        dealerHidden = false;
+        BlackjackWin = true;
+        endGame('ブラックジャック！あなたの勝ち！', 'win');
+      } else if (d === 21) {
+        dealerHidden = false;
+        endGame('ディーラーがブラックジャック！あなたの負け！', 'lose');
+      }
+    }
+
+    function delay(ms) {
+      return new Promise(res => setTimeout(res, ms));
+    }
+
+    function toggleButtons(enabled) {
+      document.getElementById('hitBtn').disabled = !enabled;
+      document.getElementById('standBtn').disabled = !enabled;
+      const doubleBtn = document.getElementById('doubleBtn');
+      doubleBtn.disabled = !enabled || player.length !== 2 || coins < currentBet;
+    }
+
+    window.addEventListener('keydown', (e) => {
+      const betInput = document.getElementById('bet');
+      const activeTag = document.activeElement.tagName.toLowerCase();
+      if (activeTag === 'input' || activeTag === 'textarea') return;
+
+      const step = (e.key === 'ArrowRight') ? 10 :
+                  (e.key === 'ArrowLeft') ? -10 :
+                  (e.key === 'ArrowUp') ? 1 :
+                  (e.key === 'ArrowDown') ? -1 : 0;
+
+      if (step !== 0 && !gameOver && !Restarting) {
+        e.preventDefault();
+        let val = parseInt(betInput.value) || 0;
+        val += step;
+        val = Math.max(1, Math.min(val, coins));
+        betInput.value = val;
+        return;
+      }
+
+      switch (e.key) {
+        case 'Tab':
+          e.preventDefault();
+          if (!document.getElementById('standBtn').disabled) stand();
+          break;
+        case 'Shift':
+          if (e.location === 1) {
+            e.preventDefault();
+            if (!document.getElementById('hitBtn').disabled) hit();
+          }
+          break;
+        case ' ':
+        case 'Spacebar':
+          e.preventDefault();
+          const betBtn = document.getElementById('betBtn');
+          if (!betBtn.disabled) betBtn.click();
+          break;
+        case 'Enter':
+          const doubleBtn = document.getElementById('doubleBtn');
+          if (!doubleBtn.disabled) {
+            e.preventDefault();
+            doubleDown();
+          }
+          break;
+      }
+    });
+
+
+    updateCoinDisplay();
+    </script>
+</body>
+</html> -->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ブラックジャック</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle, #2c3e50, #1a252f);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1em;
+      box-sizing: border-box;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    #homeBtn {
+      position: fixed;
+      top: 1em;
+      right: 1em;
+      width: 40px;
+      height: 36px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1200;
+      user-select: none;
+    }
+
+    #homeBtn::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 7px;
+      width: 26px;
+      height: 26px;
+      border-left: 2px solid white;
+      border-right: 2px solid white;
+      border-bottom: 2px solid white;
+      box-sizing: border-box;
+      border-radius: 2px;
+      background: transparent;
+      z-index: 1;
+    }
+
+    #homeBtn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40px;
+      height: 20px;
+      pointer-events: none;
+      z-index: 2;
+      background:
+        linear-gradient(135deg, transparent 45%, white 45%, white 55%, transparent 55%) left top / 50% 100% no-repeat,
+        linear-gradient(225deg, transparent 45%, white 45%, white 55%, transparent 55%) right top / 50% 100% no-repeat;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin: 0.5em 0 1em 0;
+      text-align: center;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3em;
+    }
+
+    .title-icon {
+      width: 1em;
+      height: 1em;
+      margin: 0 0.3em;
+    }
+
+    h2 {
+      margin: 0.5em 0 0.5em;
+    }
+
+    .table-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      width: 100%;
+      max-width: 900px;
+      min-height: 250px;
+      margin-bottom: 1em;
+    }
+
+    .zone {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.6em 0.8em;
+      border-radius: 10px;
+      max-height: fit-content;
+    }
+
+    img {
+      -webkit-user-drag: none;
+      user-drag: none;
+      pointer-events: auto;
+    }
+
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6em;
+      min-height: 100px;
+      margin-bottom: 0.5em;
+    }
+
+    .card {
+      background: white;
+      color: black;
+      border-radius: 5px;
+      width: 50px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+      animation: deal 0.3s forwards;
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    .card-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-content .card-value {
+      font-size: 1.4em;
+      font-weight: bold;
+      z-index: 1;
+    }
+
+    .card-suit-top-left,
+    .card-suit-bottom-right {
+      width: 15px;
+      height: 15px;
+      position: absolute;
+    }
+
+    .card-suit-top-left {
+      top: 4px;
+      left: 4px;
+    }
+
+    .card-suit-bottom-right {
+      bottom: 4px;
+      right: 4px;
+    }
+
+    .card.back {
+      background: repeating-linear-gradient(
+        45deg,
+        #34495e,
+        #34495e 5px,
+        #2c3e50 5px,
+        #2c3e50 10px
+      );
+      color: transparent;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    }
+
+    @keyframes deal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .score {
+      font-size: 1em;
+      margin-top: -0.2em;
+    }
+
+    .controls {
+      margin-top: 0.5em;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5em;
+    }
+
+    .bet-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 1em;
+      margin-top: 1em;
+      flex-wrap: wrap;
+    }
+
+    .bet-zone {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.6em 0.8em;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+
+    #betBtnWrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    #betBtn {
+      padding: 0.6em 1.2em;
+      font-size: 1em;
+      margin: 3.39px auto;
+    }
+
+    button {
+      padding: 0.4em 1em;
+      font-size: 1em;
+      border: none;
+      border-radius: 6px;
+      background: #27ae60;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover:not(:disabled) {
+      background: #219150;
+    }
+
+    button:disabled {
+      background: #777;
+      cursor: not-allowed;
+    }
+
+    button.danger {
+      background: #e74c3c;
+    }
+
+    button.danger:hover:not(:disabled) {
+      background: #c0392b;
+    }
+
+    button.danger:disabled {
+      background: #999 !important;
+      color: #ccc !important;
+      cursor: not-allowed;
+    }
+
+    input[type="number"] {
+      width: 80px;
+      padding: 0.4em;
+      border-radius: 6px;
+      font-size: 1em;
+      border: none;
+      text-align: center;
+      appearance: none;
+    }
+
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button {
+      /* -webkit-appearance: none; */
+      -webkit-appearance: auto;
+      margin: 0;
+    }
+
+    #message {
+      margin-top: 0.8em;
+      font-size: 1.2em;
+      font-weight: bold;
+      min-height: 1.5em;
+      user-select: none;
+      text-align: center;
+    }
+
+    #message.win { color: #2ecc71; }
+    #message.lose { color: #e74c3c; }
+    #message.draw { color: #f1c40f; }
+
+    #coinDisplay {
+      position: fixed;
+      bottom: 1em;
+      right: 1em;
+      background: rgba(0,0,0,0.6);
+      color: #2ecc71;
+      font-weight: bold;
+      padding: 0.6em 1em;
+      border-radius: 10px;
+      font-size: 1.1em;
+      box-shadow: 0 0 10px #2ecc71;
+      user-select: none;
+      z-index: 1000;
+    }
+
+    #keyGuide {
+      position: fixed;
+      bottom: 1em;
+      left: 1em;
+      background: rgba(0, 0, 0, 0.2);
+      color: #fff;
+      padding: 0.6em 1em;
+      border-radius: 8px;
+      font-size: 0.9em;
+      line-height: 1.4em;
+      user-select: none;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+      max-width: 180px;
+      z-index: 1100;
+    }
+
+    @media (max-width: 599px) {
+      #keyGuide {
+        display: none;
+      }
+      #homeBtn {
+        top: auto;
+        bottom: 1.5em;
+        right: auto;
+        left: 1em;
+      }
+      .title-icon {
+        width: 1em;
+        height: 1em;
+        vertical-align: auto;
+        margin: 0 0;
+        align-items: center;
+      }
+      h2 {
+        margin-top: 0.3em;
+      }
+    }
+
+    @media (min-width: 600px) {
+      .table-container {
+        flex-direction: row;
+        justify-content: space-between;
+        min-height: fit-content;
+      }
+
+      .zone {
+        flex: 1;
+        margin: 0 0.7em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button id="homeBtn" onclick="location.href='Home.html'" aria-label="ホームに戻る"></button>
+
+  <h1 class="title">
+    <img src="images/spade.png" alt="スペード" class="title-icon">
+    ブラックジャック
+    <img src="images/heart.png" alt="ハート" class="title-icon">
+  </h1>
+
+  <div class="table-container">
+    <div class="zone">
+      <h2>ディーラー</h2>
+      <div id="dealer-cards" class="cards"></div>
+      <div id="dealer-score" class="score">合計: ???</div>
+    </div>
+    <div class="zone">
+      <h2>あなた</h2>
+      <div id="player-cards" class="cards"></div>
+      <div id="player-score" class="score">合計: 0</div>
+    </div>
+  </div>
+
+  <div class="bet-wrapper">
+    <div class="bet-zone">
+      <label for="bet" style="display:flex; align-items:center; gap:0.3em;">
+        ベット: 
+        <input type="number" id="bet" min="1" max="100" value="10">
+        <span>coin</span>
+      </label>
+    </div>
+    <div id="betBtnWrapper">
+      <button onclick="restart()" id="betBtn">ベット</button>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button onclick="doubleDown()" id="doubleBtn" class="danger">ダブルダウン</button>
+    <button onclick="hit()" id="hitBtn">ヒット</button>
+    <button onclick="stand()" id="standBtn">スタンド</button>
+  </div>
+
+  <div id="message"></div>
+  <div id="coinDisplay">コイン: <span id="coinBalance">100</span></div>
+  <div id="keyGuide">
+    ↑ ↓：±1　← →：±10<br>
+    スペースキー：ベット<br>
+    左Shiftキー：ヒット<br>
+    Enterキー：ダブルダウン<br>
+    Tabキー：スタンド
+  </div>
+
+  <script>
+    const suits = ['spade', 'heart', 'diamond', 'clover'];
+    const values = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+
+    let deck = [];
+    let player = [];
+    let dealer = [];
+    let gameOver = false;
+    let dealerHidden = true;
+    let coins = 100;
+    let currentBet = 10;
+    let BlackjackWin = false;
+    let Restarting = false;
+    let Hitting = false;
+
+    function createDeck() {
+      deck = [];
+      for (let suit of suits) {
+        for (let value of values) {
+          deck.push({ suit, value });
+        }
+      }
+      for (let i = deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+      }
+    }
+
+    function drawCard() {
+      if (deck.length === 0) {
+        console.warn('デッキが空です。新しいデッキを生成します。');
+        createDeck(); 
+      }
+      return deck.pop();
+    }
+
+    async function dealInitialCards() {
+      player = [];
+      dealer = [];
+      gameOver = false;
+      dealerHidden = true;
+      BlackjackWin = false;
+      showMessage('');
+      updateUI();
+
+      player.push(drawCard()); updateUI(); await delay(300);
+      dealer.push(drawCard()); updateUI(); await delay(300);
+      player.push(drawCard()); updateUI(); await delay(300);
+      dealer.push(drawCard()); updateUI();
+
+      checkBlackjack();
+      toggleButtons(true);
+    }
+
+    function renderCards(containerId, hand) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = '';
+      hand.forEach((card, i) => {
+        const div = document.createElement('div');
+        div.className = 'card';
+
+        if (containerId === 'dealer-cards' && dealerHidden && i === 1) {
+          div.classList.add('back');
+          div.textContent = '';
+        } else {
+          const inner = document.createElement('div');
+          inner.className = 'card-content';
+
+          const valueText = document.createElement('div');
+          valueText.className = 'card-value';
+          valueText.textContent = card.value;
+          valueText.style.color = (card.suit === 'heart' || card.suit === 'diamond') ? 'red' : 'black';
+
+          const suitTopLeft = document.createElement('img');
+          suitTopLeft.className = 'card-suit-top-left';
+          suitTopLeft.src = `images/${card.suit}.png`;
+
+          const suitBottomRight = document.createElement('img');
+          suitBottomRight.className = 'card-suit-bottom-right';
+          suitBottomRight.src = `images/${card.suit}.png`;
+
+          inner.appendChild(valueText);
+          inner.appendChild(suitTopLeft);
+          inner.appendChild(suitBottomRight);
+          div.appendChild(inner);
+        }
+
+        div.style.animationDelay = `${i * 0.1}s`;
+        container.appendChild(div);
+      });
+    }
+
+    function getPoints(hand) {
+      let total = 0, aces = 0;
+      for (let card of hand) {
+        if (['J', 'Q', 'K'].includes(card.value)) total += 10;
+        else if (card.value === 'A') { total += 11; aces++; }
+        else total += parseInt(card.value);
+      }
+      while (total > 21 && aces > 0) { total -= 10; aces--; }
+      return total;
+    }
+
+    function updateUI() {
+      renderCards('player-cards', player);
+      renderCards('dealer-cards', dealer);
+      document.getElementById('player-score').textContent = `合計: ${getPoints(player)}`;
+      document.getElementById('dealer-score').textContent = dealerHidden ? '合計: ???' : `合計: ${getPoints(dealer)}`;
+    }
+
+    function updateCoinDisplay() {
+      document.getElementById('coinBalance').textContent = coins;
+    }
+
+    function showMessage(msg, type = '') {
+      const el = document.getElementById('message');
+      el.innerHTML = msg;
+      el.className = '';
+      if (type) el.classList.add(type);
+    }
+
+    async function hit() {
+      if (gameOver || Hitting || player.length < 2) return;
+      Hitting = true;
+
+      player.push(drawCard());
+      updateUI();
+      await delay(400);
+
+      toggleButtons(true);
+
+      if (getPoints(player) > 21) {
+        endGame('バースト！<br>あなたの負けです。', 'lose');
+      }
+
+      Hitting = false;
+    }
+
+    async function stand() {
+      if (gameOver || player.length < 2) return;
+      toggleButtons(false);
+      await delay(500);
+      dealerHidden = false;
+      updateUI();
+      await dealerTurn();
+    }
+
+    async function dealerTurn() {
+      while (getPoints(dealer) < 17) {
+        await delay(600);
+        dealer.push(drawCard());
+        updateUI();
+      }
+      const p = getPoints(player), d = getPoints(dealer);
+      if (d > 21) endGame('ディーラーがバースト！<br>あなたの勝ち！', 'win');
+      else if (p > d) endGame('あなたの勝ち！', 'win');
+      else if (p < d) endGame('あなたの負け！', 'lose');
+      else endGame('引き分け！<br>ベット額を変換します。', 'draw');
+    }
+
+    function endGame(msg, result) {
+      gameOver = true;
+      toggleButtons(false);
+
+      if (result === 'win' && BlackjackWin) {
+        coins += Math.floor(currentBet * 2.5);
+      } else if (result === 'win') {
+        coins += currentBet * 2;
+      } else if (result === 'draw') {
+        coins += currentBet;
+      }
+
+      updateCoinDisplay();
+      showMessage(msg, result);
+      updateUI();
+      
+      document.getElementById('betBtn').disabled = false;
+      document.getElementById('bet').disabled = false;
+    }
+
+    function restart() {
+      if (Restarting) return;
+      Restarting = true;
+
+      const betBtn = document.getElementById('betBtn');
+      const betInput = document.getElementById('bet');
+
+      betBtn.disabled = true;
+      betInput.disabled = true;
+
+      currentBet = parseInt(betInput.value);
+      if (isNaN(currentBet) || currentBet <= 0 || currentBet > coins) {
+        alert('正しいベット金額（1 〜 ' + coins + ' coin）を入力してください');
+        Restarting = false;
+        betBtn.disabled = false;
+        betInput.disabled = false;
+        betInput.focus();
+        return;
+      }
+
+      coins -= currentBet;
+      updateCoinDisplay();
+      createDeck();
+
+      dealInitialCards().then(() => {
+        Restarting = false;
+      });
+    }
+
+    async function doubleDown() {
+      if (gameOver || player.length !== 2 || coins < currentBet) return;
+      coins -= currentBet;
+      currentBet *= 2;
+      updateCoinDisplay();
+
+      player.push(drawCard());
+      updateUI();
+      await delay(400);
+
+      if (getPoints(player) > 21) {
+        endGame('バースト！あなたの負けです。', 'lose');
+      } else {
+        await stand();
+      }
+    }
+
+    function checkBlackjack() {
+      const p = getPoints(player), d = getPoints(dealer);
+      if (p === 21 && d === 21) {
+        dealerHidden = false;
+        endGame('お互いブラックジャック！引き分け！ベット額は戻りました。', 'draw');
+      } else if (p === 21) {
+        dealerHidden = false;
+        BlackjackWin = true;
+        endGame('ブラックジャック！あなたの勝ち！', 'win');
+      } else if (d === 21) {
+        dealerHidden = false;
+        endGame('ディーラーがブラックジャック！あなたの負け！', 'lose');
+      }
+    }
+
+    function delay(ms) {
+      return new Promise(res => setTimeout(res, ms));
+    }
+
+    function toggleButtons(enabled) {
+      document.getElementById('hitBtn').disabled = !enabled;
+      document.getElementById('standBtn').disabled = !enabled;
+      const doubleBtn = document.getElementById('doubleBtn');
+      doubleBtn.disabled = !enabled || player.length !== 2 || coins < currentBet;
+    }
+
+    window.addEventListener('keydown', (e) => {
+      const betInput = document.getElementById('bet');
+      const activeTag = document.activeElement.tagName.toLowerCase();
+      if (activeTag === 'input' || activeTag === 'textarea') return;
+
+      const step = (e.key === 'ArrowRight') ? 10 :
+                   (e.key === 'ArrowLeft') ? -10 :
+                   (e.key === 'ArrowUp') ? 1 :
+                   (e.key === 'ArrowDown') ? -1 : 0;
+
+      if (step !== 0 && !gameOver && !Restarting) {
+        e.preventDefault();
+        let val = parseInt(betInput.value) || 0;
+        val += step;
+        val = Math.max(1, Math.min(val, coins));
+        betInput.value = val;
+        return;
+      }
+
+      switch (e.key) {
+        case 'Tab':
+          e.preventDefault();
+          if (!document.getElementById('standBtn').disabled) stand();
+          break;
+        case 'Shift':
+          if (e.location === 1) {
+            e.preventDefault();
+            if (!document.getElementById('hitBtn').disabled) hit();
+          }
+          break;
+        case ' ':
+        case 'Spacebar':
+          e.preventDefault();
+          const betBtn = document.getElementById('betBtn');
+          if (!betBtn.disabled) betBtn.click();
+          break;
+        case 'Enter':
+          const doubleBtn = document.getElementById('doubleBtn');
+          if (!doubleBtn.disabled) {
+            e.preventDefault();
+            doubleDown();
+          }
+          break;
+      }
+    });
+
+    updateCoinDisplay();
+  </script>
+</body>
+</html>

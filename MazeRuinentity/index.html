@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>迷宮遺跡</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+  <h1>迷宮遺跡</h1>
+  <div id="instructions">操作：W↑ A← S↓ D→（矢印キーも使用可能）<br>Ctrlキーを押している間だけ現在地が見える</div>
+
+  <div id="mazeContainer">
+    <div id="sidebar">
+      <button id="btnNew">迷宮を再生成</button>
+      <div><strong>現在地：</strong><span id="startPos"></span></div>
+      <div><strong>ゴール位置：</strong><span id="goalPos"></span></div>
+    </div>
+
+    <div id="maze" aria-label="遺跡の迷路"></div>
+  </div>
+
+  <div id="info" aria-live="polite"></div>
+
+  <script src="scripts/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ブラックジャック｜ホーム</title>
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(to bottom, #1a252f, #2c3e50);
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin: 0.5em 0 1em 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+
+    h1 .mark-left,h1 .mark-right {
+      display: flex;
+      width: 1em;
+      height: 1em;
+      align-items: center;
+      margin: 0 auto;
+    }
+
+    h1 .mark-left{
+      background: url(images/spade.png) no-repeat center/contain;
+      color: black;
+    }
+    h1 .mark-right {
+      background: url(images/heart.png) no-repeat center/contain;
+      color: red;
+    }
+
+    p {
+      font-size: 1.2em;
+      max-width: 500px;
+      margin-bottom: 2em;
+    }
+
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      align-items: center;
+    }
+
+    button {
+      padding: 0.8em 2em;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 8px;
+      background: #27ae60;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+      width: 220px;
+    }
+
+    button:hover {
+      background: #219150;
+    }
+  </style>
+</head>
+<body>
+  <h1><span class="mark-left"></span> ブラックジャック <span class="mark-right"></span></h1>
+  <p>
+    ようこそブラックジャックへ！<br>
+    ディーラーに勝ってコインを増やそう。
+  </p>
+
+  <div class="button-group">
+    <button onclick="startGame()">ゲームスタート</button>
+    <button onclick="goToRulePage()">ルールを見る</button>
+  </div>
+
+  <script>
+    function startGame() {
+      window.location.href = "Game.html";
+    }
+
+    function goToRulePage() {
+      window.location.href = "Rule.html";
+    }
+  </script>
+</body>
+</html>
